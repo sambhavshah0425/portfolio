@@ -1,0 +1,16 @@
+.github-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; }
+@media (max-width: 780px) { .github-grid { grid-template-columns: 1fr; } }
+.gh-card { background: var(--panel); border: 1px solid var(--panel-border); border-radius: var(--radius); padding: 32px; transition: all .4s var(--ease); }
+.gh-card:hover { border-color: rgba(255,255,255,0.18); transform: translateY(-3px); }
+.gh-num { font-size: clamp(2.4rem, 4vw, 3.2rem); font-weight: 500; letter-spacing: -0.03em; background: var(--grad-1); -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1; }
+.gh-lbl { font-family: 'JetBrains Mono', monospace; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--text-mute); margin-top: 10px; }
+.gh-lang-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.gh-lang { display: flex; align-items: center; gap: 10px; font-size: .88rem; color: var(--text-dim); }
+.gh-lang-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.gh-activity { background: var(--panel); border: 1px solid var(--panel-border); border-radius: var(--radius); padding: 32px; }
+.gh-activity h4 { font-size: .95rem; font-weight: 500; margin-bottom: 20px; }
+.activity-bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.activity-label { font-family: 'JetBrains Mono', monospace; font-size: .68rem; letter-spacing: .1em; color: var(--text-mute); width: 80px; flex-shrink: 0; }
+.activity-bar { flex: 1; height: 6px; background: rgba(255,255,255,0.05); border-radius: 100px; overflow: hidden; }
+.activity-fill { height: 100%; border-radius: 100px; background: var(--grad-1); transition: width 1.2s var(--ease); }
+.activity-val { font-family: 'JetBrains Mono', monospace; font-size: .68rem; color: var(--text-mute); width: 28px; text-align: right; }

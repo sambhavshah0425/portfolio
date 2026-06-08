@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Sambhav Shah — Full Stack Developer & AI Engineer</title>
+<meta name="description" content="Sambhav Shah is a Full Stack Developer and AI Engineer building intelligent systems, scalable products, and AI-powered experiences.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07080b;
+  --bg-soft:#0c0e13;
+  --panel:rgba(255,255,255,0.04);
+  --panel-border:rgba(255,255,255,0.08);
+  --text:#eef0f4;
+  --text-dim:#9aa0ad;
+  --text-mute:#5d6271;
+  --accent:#e8c98b;
+  --accent-2:#7aa2ff;
+  --green:#7ee787;
+  --grad-1:linear-gradient(135deg,#e8c98b 0%,#b487ff 50%,#5fb8ff 100%);
+  --grad-soft:linear-gradient(180deg,rgba(232,201,139,0.12),rgba(122,162,255,0.06));
+  --radius:18px;
+  --maxw:1280px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,sans-serif;font-weight:400;line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none;transition:opacity .3s var(--ease),color .3s var(--ease)}
+a:hover{opacity:.7}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+::selection{background:var(--accent);color:#000}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+.serif{font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;letter-spacing:-0.01em}
+.mono{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-mute)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);background:rgba(7,8,11,0.5);border-bottom:1px solid transparent;transition:all .4s var(--ease)}
+.nav.scrolled{border-bottom-color:var(--panel-border);background:rgba(7,8,11,0.78)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-0.01em;font-size:1.05rem}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--grad-1);box-shadow:0 0 18px rgba(232,201,139,0.6)}
+.nav-links{display:flex;gap:36px;font-size:.88rem;color:var(--text-dim)}
+.nav-cta{padding:10px 18px;border:1px solid var(--panel-border);border-radius:100px;font-size:.85rem;background:var(--panel);transition:all .3s var(--ease)}
+.nav-cta:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.18);opacity:1}
+@media(max-width:780px){.nav-links{display:none}}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:720px;overflow:hidden;display:flex;align-items:center}
+.hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero-veil{position:absolute;inset:0;z-index:1;background:radial-gradient(120% 80% at 50% 100%,rgba(7,8,11,0.85) 0%,rgba(7,8,11,0.45) 40%,rgba(7,8,11,0.15) 70%),linear-gradient(180deg,rgba(7,8,11,0.55) 0%,rgba(7,8,11,0.15) 30%,rgba(7,8,11,0.3) 70%,rgba(7,8,11,0.95) 100%)}
+.hero-grain{position:absolute;inset:0;z-index:2;opacity:.08;pointer-events:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+.hero-content{position:relative;z-index:3;width:100%}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border:1px solid var(--panel-border);border-radius:100px;background:rgba(255,255,255,0.03);backdrop-filter:blur(10px);font-size:.78rem;color:var(--text-dim);margin-bottom:32px}
+.hero-eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:#7ee787;box-shadow:0 0 10px #7ee787;animation:pulse 2s var(--ease) infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+.hero h1{font-size:clamp(3rem,8.5vw,7.5rem);font-weight:500;line-height:.95;letter-spacing:-0.04em;margin-bottom:32px;max-width:14ch}
+.hero h1 .accent{background:var(--grad-1);-webkit-background-clip:text;background-clip:text;color:transparent;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400}
+.hero-sub{font-size:clamp(1rem,1.4vw,1.15rem);color:var(--text-dim);max-width:46ch;margin-bottom:48px;font-weight:300}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:100px;font-size:.92rem;font-weight:500;transition:all .35s var(--ease);border:1px solid transparent}
+.btn-primary{background:#fff;color:#000}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(255,255,255,0.18);opacity:1}
+.btn-ghost{background:rgba(255,255,255,0.04);border-color:var(--panel-border);color:#fff;backdrop-filter:blur(10px)}
+.btn-ghost:hover{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.2);opacity:1}
+.btn .arrow{transition:transform .35s var(--ease)}
+.btn:hover .arrow{transform:translateX(4px)}
+.hero-meta{position:absolute;bottom:36px;left:0;right:0;z-index:3;display:flex;justify-content:space-between;align-items:flex-end;padding:0 32px}
+.hero-meta-item{display:flex;flex-direction:column;gap:6px}
+.hero-meta-item .label{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-mute)}
+.hero-meta-item .value{font-size:.85rem;color:var(--text-dim)}
+.scroll-indicator{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-mute)}
+.scroll-line{width:1px;height:36px;background:linear-gradient(180deg,transparent,var(--text-mute) 50%,transparent);animation:scroll 2.4s var(--ease) infinite}
+@keyframes scroll{0%{transform:translateY(-12px);opacity:0}50%{opacity:1}100%{transform:translateY(12px);opacity:0}}
+@media(max-width:780px){.hero-meta{display:none}}
+
+/* SECTION BASE */
+section{padding:140px 0;position:relative}
+.section-head{margin-bottom:80px;display:grid;grid-template-columns:1fr 2fr;gap:48px;align-items:end}
+@media(max-width:780px){.section-head{grid-template-columns:1fr;gap:24px}}
+.section-head h2{font-size:clamp(2.4rem,5vw,4.2rem);font-weight:500;line-height:1;letter-spacing:-0.03em}
+.section-head h2 .it{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400}
+.section-head p{color:var(--text-dim);max-width:50ch;font-size:1rem;font-weight:300}
+
+/* MARQUEE */
+.marquee{padding:36px 0;border-top:1px solid var(--panel-border);border-bottom:1px solid var(--panel-border);overflow:hidden;white-space:nowrap;background:#06070a}
+.marquee-track{display:inline-flex;gap:60px;animation:marquee 38s linear infinite;font-family:'Instrument Serif',serif;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--text-dim)}
+.marquee-track span{display:inline-flex;align-items:center;gap:60px}
+.marquee-track .star{color:var(--accent);font-size:1.4rem}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* WORK GRID */
+.work-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.work-card{position:relative;border-radius:var(--radius);overflow:hidden;background:var(--panel);border:1px solid var(--panel-border);aspect-ratio:4/3;cursor:pointer;transition:all .5s var(--ease)}
+.work-card.large{grid-column:span 7;aspect-ratio:16/10}
+.work-card.small{grid-column:span 5;aspect-ratio:16/10}
+.work-card.med{grid-column:span 4}
+.work-card.wide{grid-column:span 8;aspect-ratio:16/9}
+@media(max-width:980px){.work-card,.work-card.large,.work-card.small,.work-card.med,.work-card.wide{grid-column:span 12;aspect-ratio:16/10}}
+.work-visual{position:absolute;inset:0;transition:transform .8s var(--ease)}
+.work-visual svg{width:100%;height:100%}
+.work-card:hover .work-visual{transform:scale(1.04)}
+.work-card:hover{border-color:rgba(255,255,255,0.18);transform:translateY(-4px)}
+.work-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:28px;z-index:2;background:linear-gradient(180deg,rgba(7,8,11,0) 0%,rgba(7,8,11,0) 40%,rgba(7,8,11,0.88) 100%)}
+.work-tag{display:inline-flex;align-self:flex-start;padding:6px 12px;border-radius:100px;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text)}
+.work-info{display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+.work-info h3{font-size:1.4rem;font-weight:500;letter-spacing:-0.02em;line-height:1.1}
+.work-info .meta{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);margin-top:6px}
+.work-info .icon{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .4s var(--ease)}
+.work-card:hover .work-info .icon{background:#fff;color:#000;transform:rotate(-45deg)}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:center}
+@media(max-width:980px){.about{grid-template-columns:1fr;gap:48px}}
+.about-text h2{font-size:clamp(2rem,4vw,3.4rem);font-weight:500;line-height:1.1;letter-spacing:-0.025em;margin-bottom:32px}
+.about-text h2 .it{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--accent)}
+.about-text p{color:var(--text-dim);font-size:1.05rem;margin-bottom:20px;font-weight:300;line-height:1.7}
+.about-focus{margin-top:36px;padding-top:36px;border-top:1px solid var(--panel-border)}
+.about-focus h4{font-size:.78rem;font-family:'JetBrains Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--text-mute);margin-bottom:16px}
+.focus-tags{display:flex;flex-wrap:wrap;gap:10px}
+.focus-tag{padding:7px 14px;border:1px solid var(--panel-border);border-radius:100px;font-size:.82rem;color:var(--text-dim)}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:48px;padding-top:48px;border-top:1px solid var(--panel-border)}
+.stat .num{font-size:clamp(2.4rem,4vw,3.2rem);font-weight:500;letter-spacing:-0.03em;background:var(--grad-1);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.stat .lbl{color:var(--text-mute);font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;margin-top:10px}
+.about-visual{position:relative;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;background:#0a0c12;border:1px solid var(--panel-border)}
+.about-visual-inner{width:100%;height:100%;position:relative;overflow:hidden}
+.about-visual-inner canvas{width:100%;height:100%}
+.about-visual:hover .about-visual-inner{transform:scale(1.05);transition:transform 1s var(--ease)}
+.about-visual .vbadge{position:absolute;bottom:20px;left:20px;right:20px;padding:14px 18px;background:rgba(7,8,11,0.7);backdrop-filter:blur(20px);border:1px solid var(--panel-border);border-radius:14px;display:flex;justify-content:space-between;align-items:center;font-size:.82rem;z-index:2}
+.about-visual .vbadge .l{color:var(--text-dim)}
+
+/* CAPABILITIES */
+.cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--panel-border);border:1px solid var(--panel-border);border-radius:var(--radius);overflow:hidden}
+@media(max-width:780px){.cap-grid{grid-template-columns:1fr}}
+.cap{padding:44px 36px;background:var(--bg);transition:background .4s var(--ease);min-height:280px;display:flex;flex-direction:column;justify-content:space-between}
+.cap:hover{background:var(--bg-soft)}
+.cap .num{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.18em;color:var(--text-mute)}
+.cap h3{font-size:1.5rem;font-weight:500;letter-spacing:-0.02em;margin:24px 0 16px}
+.cap p{color:var(--text-dim);font-size:.95rem;font-weight:300;line-height:1.6}
+.cap .ic{width:48px;height:48px;border-radius:12px;background:var(--grad-soft);border:1px solid var(--panel-border);display:flex;align-items:center;justify-content:center;margin-bottom:24px;font-size:1.4rem}
+
+/* EXPERIENCE / TIMELINE */
+.timeline{position:relative;padding-left:2px}
+.tl-item{position:relative;padding:48px 0 48px 64px;border-left:1px solid var(--panel-border)}
+.tl-item::before{content:'';position:absolute;left:-5px;top:52px;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px rgba(232,201,139,0.5)}
+.tl-year{position:absolute;left:-72px;top:48px;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);writing-mode:vertical-rl;transform:rotate(180deg)}
+@media(max-width:780px){.tl-year{display:none}}
+.tl-title{font-size:1.4rem;font-weight:500;letter-spacing:-0.02em;margin-bottom:8px}
+.tl-sub{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-mute);margin-bottom:24px}
+.tl-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.tl-list li{color:var(--text-dim);font-size:.95rem;font-weight:300;padding-left:20px;position:relative}
+.tl-list li::before{content:'→';position:absolute;left:0;color:var(--accent-2);font-size:.85rem}
+
+/* SKILLS SECTION */
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+@media(max-width:980px){.skills-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.skills-grid{grid-template-columns:1fr}}
+.skill-cat{background:var(--panel);border:1px solid var(--panel-border);border-radius:var(--radius);padding:36px 32px;transition:border-color .4s var(--ease)}
+.skill-cat:hover{border-color:rgba(255,255,255,0.18)}
+.skill-cat-label{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
+.skill-cat h4{font-size:1.15rem;font-weight:500;letter-spacing:-0.01em;margin-bottom:20px}
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px}
+.skill-tag{padding:5px 12px;background:rgba(255,255,255,0.04);border:1px solid var(--panel-border);border-radius:100px;font-size:.8rem;color:var(--text-dim);transition:all .3s var(--ease)}
+.skill-tag:hover{background:rgba(232,201,139,0.08);border-color:rgba(232,201,139,0.3);color:var(--accent)}
+
+/* GITHUB SECTION */
+.github-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:48px}
+@media(max-width:780px){.github-grid{grid-template-columns:1fr}}
+.gh-card{background:var(--panel);border:1px solid var(--panel-border);border-radius:var(--radius);padding:32px;transition:all .4s var(--ease)}
+.gh-card:hover{border-color:rgba(255,255,255,0.18);transform:translateY(-3px)}
+.gh-num{font-size:clamp(2.4rem,4vw,3.2rem);font-weight:500;letter-spacing:-0.03em;background:var(--grad-1);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.gh-lbl{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-mute);margin-top:10px}
+.gh-lang-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.gh-lang{display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--text-dim)}
+.gh-lang-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.gh-activity{background:var(--panel);border:1px solid var(--panel-border);border-radius:var(--radius);padding:32px}
+.gh-activity h4{font-size:.95rem;font-weight:500;margin-bottom:20px}
+.activity-bar-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.activity-label{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:var(--text-mute);width:80px;flex-shrink:0}
+.activity-bar{flex:1;height:6px;background:rgba(255,255,255,0.05);border-radius:100px;overflow:hidden}
+.activity-fill{height:100%;border-radius:100px;background:var(--grad-1);transition:width 1.2s var(--ease)}
+.activity-val{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--text-mute);width:28px;text-align:right}
+
+/* CERTIFICATIONS */
+ 
+
+/* PROCESS */
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;counter-reset:step}
+@media(max-width:980px){.process-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.process-grid{grid-template-columns:1fr}}
+.step{position:relative;padding-top:32px;border-top:1px solid var(--panel-border);counter-increment:step}
+.step::before{content:"0" counter(step);position:absolute;top:-1px;left:0;padding:6px 0;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.18em;color:var(--accent);border-top:1px solid var(--accent);margin-top:-1px}
+.step h4{font-size:1.2rem;font-weight:500;letter-spacing:-0.01em;margin:14px 0 10px}
+.step p{color:var(--text-dim);font-size:.92rem;font-weight:300;line-height:1.6}
+
+/* CONTACT */
+.contact{position:relative;overflow:hidden}
+.contact-inner{position:relative;padding:100px 60px;border-radius:28px;background:radial-gradient(120% 100% at 30% 0%,rgba(232,201,139,0.18) 0%,rgba(7,8,11,0) 50%),radial-gradient(80% 100% at 100% 100%,rgba(122,162,255,0.18) 0%,rgba(7,8,11,0) 50%),#0a0c12;border:1px solid var(--panel-border);text-align:center;overflow:hidden}
+@media(max-width:780px){.contact-inner{padding:60px 28px}}
+.contact-inner::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.05) 1px,transparent 0);background-size:24px 24px;opacity:.6;pointer-events:none}
+.contact-inner > *{position:relative;z-index:1}
+.contact h2{font-size:clamp(2.4rem,6vw,5rem);font-weight:500;line-height:1;letter-spacing:-0.035em;margin-bottom:24px}
+.contact h2 .it{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;background:var(--grad-1);-webkit-background-clip:text;background-clip:text;color:transparent}
+.contact p{color:var(--text-dim);max-width:46ch;margin:0 auto 40px;font-size:1.05rem;font-weight:300}
+.contact-btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:48px}
+.contact-email{display:inline-flex;align-items:center;gap:14px;padding:18px 32px;background:#fff;color:#000;border-radius:100px;font-size:1rem;font-weight:500;transition:all .4s var(--ease)}
+.contact-email:hover{transform:translateY(-3px);box-shadow:0 20px 60px rgba(232,201,139,0.3);opacity:1}
+.contact-social{display:flex;justify-content:center;gap:28px;font-family:'JetBrains Mono',monospace;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim)}
+
+/* FOOTER */
+footer{padding:48px 0 36px;border-top:1px solid var(--panel-border)}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;font-size:.85rem;color:var(--text-mute)}
+.foot .mono{font-size:.7rem}
+
+/* REVEAL ANIMATIONS */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:#0a0c12}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:10px}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.2)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(7,8,11,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);opacity:0;pointer-events:none;transition:opacity .4s var(--ease);display:flex;align-items:center;justify-content:center;padding:24px}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:#0d0f16;border:1px solid var(--panel-border);border-radius:24px;width:100%;max-width:860px;max-height:90vh;overflow-y:auto;transform:translateY(40px) scale(0.97);transition:transform .5s var(--ease),opacity .5s var(--ease);opacity:0}
+.modal-overlay.open .modal{transform:translateY(0) scale(1);opacity:1}
+.modal-head{padding:40px 48px 0;display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+@media(max-width:600px){.modal-head{padding:28px 24px 0}}
+.modal-close{width:40px;height:40px;border-radius:50%;background:var(--panel);border:1px solid var(--panel-border);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:1.2rem;transition:all .3s var(--ease);color:var(--text-dim)}
+.modal-close:hover{background:rgba(255,255,255,0.1);color:#fff}
+.modal-body{padding:32px 48px 48px}
+@media(max-width:600px){.modal-body{padding:24px 24px 32px}}
+.modal-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.modal-title{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:500;letter-spacing:-0.025em;line-height:1.1;margin-bottom:16px}
+.modal-tech{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+.modal-tech span{padding:5px 12px;background:rgba(255,255,255,0.04);border:1px solid var(--panel-border);border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;color:var(--text-dim)}
+.modal-visual{border-radius:16px;overflow:hidden;border:1px solid var(--panel-border);margin-bottom:32px;background:#0a0c12}
+.modal-visual svg{width:100%;display:block}
+.modal-section{margin-bottom:28px}
+.modal-section h4{font-size:.78rem;font-family:'JetBrains Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--text-mute);margin-bottom:14px}
+.modal-section p{color:var(--text-dim);font-size:.97rem;font-weight:300;line-height:1.7}
+.modal-features{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:520px){.modal-features{grid-template-columns:1fr}}
+.modal-features li{display:flex;align-items:flex-start;gap:10px;color:var(--text-dim);font-size:.92rem;font-weight:300}
+.modal-features li::before{content:'✓';color:var(--green);font-size:.85rem;flex-shrink:0;margin-top:1px}
+</style>
+</head>
+<body>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <div class="modal-head">
+      <div>
+        <div class="modal-tag" id="mTag"></div>
+        <h2 class="modal-title" id="mTitle"></h2>
+        <div class="modal-tech" id="mTech"></div>
+      </div>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-visual" id="mVisual"></div>
+      <div class="modal-section" id="mProblem"></div>
+      <div class="modal-section">
+        <h4>Key Features</h4>
+        <ul class="modal-features" id="mFeatures"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="brand"><span class="dot"></span>SAMBHAV<span style="color:var(--text-mute);font-weight:400">.dev</span></a>
+    <div class="nav-links">
+      <a href="#work">Projects</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Journey</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Let's connect →</a>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-veil"></div>
+  <div class="hero-grain"></div>
+  <div class="container hero-content">
+    <div class="hero-eyebrow"><span class="pulse"></span>Open to Internships &amp; Software Engineering Opportunities · 2026</div>
+    <h1>Building <span class="accent">intelligent systems,</span> scalable products &amp; AI-powered experiences.</h1>
+    <p class="hero-sub">Computer Engineering student and Full Stack Developer specializing in modern web applications, AI integrations, scalable backend systems and cloud-native solutions.</p>
+    <div class="hero-actions">
+      <a href="#work" class="btn btn-primary">View Projects <span class="arrow">→</span></a>
+      <a href="#" class="btn btn-ghost">Download Resume</a>
+    </div>
+  </div>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="label">Location</span><span class="value">Mumbai, India</span></div>
+    <div class="hero-meta-item" style="text-align:center"><span class="label">Focus</span><span class="value">Full Stack Development</span></div>
+    <div class="hero-meta-item" style="text-align:right"><span class="label">Specialization</span><span class="value">AI Systems · Cloud · Data Engineering</span></div>
+  </div>
+  <div class="scroll-indicator"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>React <span class="star">✦</span> Next.js <span class="star">✦</span> TypeScript <span class="star">✦</span> Node.js <span class="star">✦</span> Express.js <span class="star">✦</span> MongoDB <span class="star">✦</span> PostgreSQL <span class="star">✦</span> Python <span class="star">✦</span> Java <span class="star">✦</span> TensorFlow <span class="star">✦</span> OpenCV <span class="star">✦</span> LangChain <span class="star">✦</span> Docker <span class="star">✦</span> Jenkins <span class="star">✦</span> AWS <span class="star">✦</span> GitHub Actions <span class="star">✦</span> CI/CD <span class="star">✦</span> System Design <span class="star">✦</span></span>
+    <span>React <span class="star">✦</span> Next.js <span class="star">✦</span> TypeScript <span class="star">✦</span> Node.js <span class="star">✦</span> Express.js <span class="star">✦</span> MongoDB <span class="star">✦</span> PostgreSQL <span class="star">✦</span> Python <span class="star">✦</span> Java <span class="star">✦</span> TensorFlow <span class="star">✦</span> OpenCV <span class="star">✦</span> LangChain <span class="star">✦</span> Docker <span class="star">✦</span> Jenkins <span class="star">✦</span> AWS <span class="star">✦</span> GitHub Actions <span class="star">✦</span> CI/CD <span class="star">✦</span> System Design <span class="star">✦</span></span>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="work">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="mono" style="margin-bottom:14px">— 01 / Featured Projects</div>
+        <h2>Featured <span class="it">projects.</span></h2>
+      </div>
+      <p>Software engineering, AI, cloud and full-stack projects focused on solving real-world problems.</p>
+    </div>
+    <div class="work-grid">
+
+      <!-- P1: AI Prompt Processing -->
+      <article class="work-card large reveal" data-project="0">
+        <div class="work-visual">
+          <svg viewBox="0 0 700 437" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="700" height="437" fill="#060c1a"/>
+            <!-- Grid -->
+            <line x1="0" y1="0" x2="700" y2="437" stroke="rgba(122,162,255,0.04)" stroke-width="1"/>
+            <!-- Pipeline boxes -->
+            <rect x="30" y="160" width="110" height="50" rx="8" fill="none" stroke="rgba(122,162,255,0.4)" stroke-width="1.5"/>
+            <text x="85" y="181" fill="rgba(122,162,255,0.9)" font-size="8" font-family="monospace" text-anchor="middle">User Input</text>
+            <text x="85" y="195" fill="rgba(122,162,255,0.5)" font-size="7" font-family="monospace" text-anchor="middle">prompt_raw</text>
+            <!-- Arrow -->
+            <line x1="140" y1="185" x2="180" y2="185" stroke="rgba(232,201,139,0.6)" stroke-width="1.5" marker-end="url(#a1)"/>
+            <rect x="180" y="155" width="130" height="60" rx="8" fill="rgba(232,201,139,0.08)" stroke="rgba(232,201,139,0.5)" stroke-width="1.5"/>
+            <text x="245" y="178" fill="rgba(232,201,139,0.9)" font-size="8" font-family="monospace" text-anchor="middle">Optimization</text>
+            <text x="245" y="193" fill="rgba(232,201,139,0.5)" font-size="7" font-family="monospace" text-anchor="middle">Engine</text>
+            <text x="245" y="206" fill="rgba(232,201,139,0.4)" font-size="7" font-family="monospace" text-anchor="middle">clarity · context</text>
+            <!-- Arrow -->
+            <line x1="310" y1="185" x2="350" y2="185" stroke="rgba(232,201,139,0.6)" stroke-width="1.5" marker-end="url(#a1)"/>
+            <rect x="350" y="155" width="120" height="60" rx="8" fill="rgba(180,135,255,0.08)" stroke="rgba(180,135,255,0.5)" stroke-width="1.5"/>
+            <text x="410" y="178" fill="rgba(180,135,255,0.9)" font-size="8" font-family="monospace" text-anchor="middle">Categorizer</text>
+            <text x="410" y="193" fill="rgba(180,135,255,0.5)" font-size="7" font-family="monospace" text-anchor="middle">NLP classify</text>
+            <text x="410" y="206" fill="rgba(180,135,255,0.4)" font-size="7" font-family="monospace" text-anchor="middle">code·creative·data</text>
+            <!-- Arrow -->
+            <line x1="470" y1="185" x2="510" y2="185" stroke="rgba(232,201,139,0.6)" stroke-width="1.5" marker-end="url(#a1)"/>
+            <rect x="510" y="155" width="130" height="60" rx="8" fill="rgba(95,184,255,0.08)" stroke="rgba(95,184,255,0.5)" stroke-width="1.5"/>
+            <text x="575" y="178" fill="rgba(95,184,255,0.9)" font-size="8" font-family="monospace" text-anchor="middle">OpenAI API</text>
+            <text x="575" y="193" fill="rgba(95,184,255,0.5)" font-size="7" font-family="monospace" text-anchor="middle">gpt-4o</text>
+            <text x="575" y="206" fill="rgba(95,184,255,0.4)" font-size="7" font-family="monospace" text-anchor="middle">response_stream</text>
+            <!-- Dashboard bottom -->
+            <rect x="30" y="270" width="300" height="120" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <text x="50" y="295" fill="rgba(255,255,255,0.5)" font-size="8" font-family="monospace">Analytics Dashboard</text>
+            <rect x="50" y="305" width="40" height="70" rx="4" fill="rgba(232,201,139,0.3)"/>
+            <rect x="100" y="320" width="40" height="55" rx="4" fill="rgba(122,162,255,0.3)"/>
+            <rect x="150" y="310" width="40" height="65" rx="4" fill="rgba(180,135,255,0.3)"/>
+            <rect x="200" y="330" width="40" height="45" rx="4" fill="rgba(95,184,255,0.3)"/>
+            <rect x="250" y="315" width="40" height="60" rx="4" fill="rgba(232,201,139,0.2)"/>
+            <!-- Code snippet -->
+            <rect x="360" y="270" width="290" height="120" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <text x="380" y="292" fill="rgba(122,162,255,0.5)" font-size="7" font-family="monospace">// prompt_processor.js</text>
+            <text x="380" y="308" fill="rgba(232,201,139,0.7)" font-size="7" font-family="monospace">const optimized = await</text>
+            <text x="380" y="320" fill="rgba(232,201,139,0.7)" font-size="7" font-family="monospace">  optimizer.enhance(raw);</text>
+            <text x="380" y="336" fill="rgba(95,184,255,0.7)" font-size="7" font-family="monospace">const category =</text>
+            <text x="380" y="348" fill="rgba(95,184,255,0.7)" font-size="7" font-family="monospace">  classifier.run(optimized);</text>
+            <text x="380" y="364" fill="rgba(180,135,255,0.7)" font-size="7" font-family="monospace">return openai.chat(category);</text>
+            <!-- Top label -->
+            <text x="350" y="80" fill="rgba(255,255,255,0.12)" font-size="32" font-family="monospace" text-anchor="middle" font-weight="600">AI</text>
+            <defs><marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="rgba(232,201,139,0.6)"/></marker></defs>
+          </svg>
+        </div>
+        <div class="work-overlay">
+          <span class="work-tag">AI Platform · 2026</span>
+          <div class="work-info">
+            <div>
+              <h3>AI Prompt Processing System</h3>
+              <div class="meta">React · Node.js · OpenAI API · MongoDB</div>
+            </div>
+            <div class="icon">↗</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- P2: Money Matrix -->
+      <article class="work-card small reveal reveal-delay-1" data-project="1">
+        <div class="work-visual">
+          <svg viewBox="0 0 500 312" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="500" height="312" fill="#040d1a"/>
+            <!-- Dashboard frame -->
+            <rect x="20" y="20" width="460" height="272" rx="12" fill="rgba(255,255,255,0.02)" stroke="rgba(126,231,135,0.15)" stroke-width="1"/>
+            <!-- Top bar -->
+            <rect x="20" y="20" width="460" height="36" rx="12" fill="rgba(126,231,135,0.05)"/>
+            <circle cx="42" cy="38" r="5" fill="rgba(255,100,100,0.6)"/>
+            <circle cx="58" cy="38" r="5" fill="rgba(255,200,50,0.6)"/>
+            <circle cx="74" cy="38" r="5" fill="rgba(126,231,135,0.6)"/>
+            <text x="200" y="43" fill="rgba(255,255,255,0.4)" font-size="8" font-family="monospace" text-anchor="middle">Money Matrix — Finance Dashboard</text>
+            <!-- Balance card -->
+            <rect x="36" y="72" width="140" height="70" rx="8" fill="rgba(126,231,135,0.08)" stroke="rgba(126,231,135,0.2)" stroke-width="1"/>
+            <text x="50" y="93" fill="rgba(126,231,135,0.6)" font-size="7" font-family="monospace">TOTAL BALANCE</text>
+            <text x="50" y="115" fill="rgba(126,231,135,0.9)" font-size="18" font-family="monospace" font-weight="600">₹84,200</text>
+            <text x="50" y="132" fill="rgba(126,231,135,0.4)" font-size="7" font-family="monospace">↑ +12.4% this month</text>
+            <!-- Expense card -->
+            <rect x="190" y="72" width="130" height="70" rx="8" fill="rgba(255,100,100,0.06)" stroke="rgba(255,100,100,0.2)" stroke-width="1"/>
+            <text x="204" y="93" fill="rgba(255,100,100,0.6)" font-size="7" font-family="monospace">EXPENSES</text>
+            <text x="204" y="115" fill="rgba(255,100,100,0.9)" font-size="18" font-family="monospace" font-weight="600">₹21,400</text>
+            <text x="204" y="132" fill="rgba(255,100,100,0.4)" font-size="7" font-family="monospace">↓ -3.2% vs last</text>
+            <!-- Savings card -->
+            <rect x="334" y="72" width="130" height="70" rx="8" fill="rgba(122,162,255,0.06)" stroke="rgba(122,162,255,0.2)" stroke-width="1"/>
+            <text x="348" y="93" fill="rgba(122,162,255,0.6)" font-size="7" font-family="monospace">SAVINGS</text>
+            <text x="348" y="115" fill="rgba(122,162,255,0.9)" font-size="18" font-family="monospace" font-weight="600">₹18,600</text>
+            <text x="348" y="132" fill="rgba(122,162,255,0.4)" font-size="7" font-family="monospace">Goal: 65%</text>
+            <!-- Chart area -->
+            <rect x="36" y="158" width="280" height="110" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+            <text x="50" y="178" fill="rgba(255,255,255,0.3)" font-size="7" font-family="monospace">Monthly Spending Trend</text>
+            <!-- Line chart -->
+            <polyline points="60,248 100,230 140,240 180,210 220,220 240,200 280,215 295,205" fill="none" stroke="rgba(126,231,135,0.7)" stroke-width="2"/>
+            <polyline points="60,248 100,230 140,240 180,210 220,220 240,200 280,215 295,205" fill="url(#chartFill)" stroke="none"/>
+            <!-- Budget donut area -->
+            <rect x="332" y="158" width="132" height="110" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+            <text x="398" y="178" fill="rgba(255,255,255,0.3)" font-size="7" font-family="monospace" text-anchor="middle">Budget Split</text>
+            <circle cx="398" cy="225" r="28" fill="none" stroke="rgba(126,231,135,0.8)" stroke-width="8" stroke-dasharray="70 108" stroke-dashoffset="0"/>
+            <circle cx="398" cy="225" r="28" fill="none" stroke="rgba(255,100,100,0.8)" stroke-width="8" stroke-dasharray="38 140" stroke-dashoffset="-70"/>
+            <circle cx="398" cy="225" r="28" fill="none" stroke="rgba(122,162,255,0.8)" stroke-width="8" stroke-dasharray="30 148" stroke-dashoffset="-108"/>
+            <defs>
+              <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="rgba(126,231,135,0.2)"/>
+                <stop offset="100%" stop-color="rgba(126,231,135,0)"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="work-overlay">
+          <span class="work-tag">Full Stack · MERN · 2025</span>
+          <div class="work-info">
+            <div>
+              <h3>Money Matrix</h3>
+              <div class="meta">MongoDB · Express · React · Node.js</div>
+            </div>
+            <div class="icon">↗</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- P3: Neuro Metric -->
+      <article class="work-card med reveal" data-project="2">
+        <div class="work-visual">
+          <svg viewBox="0 0 420 315" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="420" height="315" fill="#0a080f"/>
+            <!-- Face outline -->
+            <ellipse cx="210" cy="130" rx="65" ry="75" fill="none" stroke="rgba(180,135,255,0.2)" stroke-width="1.5"/>
+            <!-- Facial landmarks -->
+            <circle cx="185" cy="115" r="2" fill="rgba(180,135,255,0.6)"/>
+            <circle cx="235" cy="115" r="2" fill="rgba(180,135,255,0.6)"/>
+            <circle cx="210" cy="140" r="2" fill="rgba(180,135,255,0.5)"/>
+            <path d="M 192 155 Q 210 168 228 155" fill="none" stroke="rgba(180,135,255,0.5)" stroke-width="1.5"/>
+            <!-- Detection box -->
+            <rect x="145" y="55" width="130" height="150" rx="6" fill="none" stroke="rgba(180,135,255,0.4)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <!-- Scan lines -->
+            <line x1="145" y1="130" x2="275" y2="130" stroke="rgba(180,135,255,0.15)" stroke-width="1"/>
+            <!-- Heatmap dots -->
+            <circle cx="185" cy="115" r="8" fill="rgba(255,100,100,0.2)"/>
+            <circle cx="235" cy="115" r="8" fill="rgba(255,100,100,0.15)"/>
+            <circle cx="210" cy="105" r="12" fill="rgba(255,150,50,0.1)"/>
+            <!-- Pipeline right -->
+            <rect x="300" y="60" width="100" height="30" rx="6" fill="rgba(180,135,255,0.08)" stroke="rgba(180,135,255,0.3)" stroke-width="1"/>
+            <text x="350" y="78" fill="rgba(180,135,255,0.7)" font-size="7" font-family="monospace" text-anchor="middle">OpenCV</text>
+            <line x1="300" y1="75" x2="280" y2="100" stroke="rgba(180,135,255,0.3)" stroke-width="1" stroke-dasharray="3 2"/>
+            <rect x="300" y="110" width="100" height="30" rx="6" fill="rgba(232,201,139,0.08)" stroke="rgba(232,201,139,0.3)" stroke-width="1"/>
+            <text x="350" y="128" fill="rgba(232,201,139,0.7)" font-size="7" font-family="monospace" text-anchor="middle">TensorFlow</text>
+            <rect x="300" y="160" width="100" height="30" rx="6" fill="rgba(95,184,255,0.08)" stroke="rgba(95,184,255,0.3)" stroke-width="1"/>
+            <text x="350" y="178" fill="rgba(95,184,255,0.7)" font-size="7" font-family="monospace" text-anchor="middle">Classifier</text>
+            <!-- Stress meter bottom -->
+            <text x="30" y="235" fill="rgba(255,255,255,0.4)" font-size="8" font-family="monospace">Stress Level: HIGH</text>
+            <rect x="30" y="243" width="360" height="8" rx="4" fill="rgba(255,255,255,0.05)"/>
+            <rect x="30" y="243" width="270" height="8" rx="4" fill="url(#stressGrad)"/>
+            <!-- Labels -->
+            <text x="30" y="270" fill="rgba(255,255,255,0.2)" font-size="7" font-family="monospace">NEUTRAL</text>
+            <text x="180" y="270" fill="rgba(255,255,255,0.2)" font-size="7" font-family="monospace">STRESSED</text>
+            <text x="340" y="270" fill="rgba(255,255,255,0.2)" font-size="7" font-family="monospace">HIGH</text>
+            <!-- Confidence -->
+            <text x="30" y="295" fill="rgba(180,135,255,0.5)" font-size="7" font-family="monospace">Confidence: 87.3% | FPS: 24 | Model: RESNET-50</text>
+            <defs>
+              <linearGradient id="stressGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="rgba(126,231,135,0.8)"/>
+                <stop offset="60%" stop-color="rgba(255,200,50,0.8)"/>
+                <stop offset="100%" stop-color="rgba(255,100,100,0.8)"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="work-overlay">
+          <span class="work-tag">AI / ML · Python · 2025</span>
+          <div class="work-info">
+            <div>
+              <h3>Neuro Metric</h3>
+              <div class="meta">Python · TensorFlow · OpenCV · Flask</div>
+            </div>
+            <div class="icon">↗</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- P4: Cloud Job Portal -->
+      <article class="work-card med reveal reveal-delay-1" data-project="3">
+        <div class="work-visual">
+          <svg viewBox="0 0 420 315" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="420" height="315" fill="#06090f"/>
+            <!-- AWS Cloud shape -->
+            <path d="M 80 110 Q 60 90 80 70 Q 90 50 120 55 Q 130 30 165 35 Q 185 20 210 35 Q 235 20 260 35 Q 290 25 300 50 Q 330 45 340 70 Q 360 75 355 100 Q 360 120 340 125 L 80 125 Z" fill="rgba(95,184,255,0.08)" stroke="rgba(95,184,255,0.35)" stroke-width="1.5"/>
+            <text x="210" y="92" fill="rgba(95,184,255,0.7)" font-size="9" font-family="monospace" text-anchor="middle">AWS Cloud</text>
+            <!-- Services inside cloud -->
+            <!-- Cognito -->
+            <rect x="100" y="135" width="70" height="36" rx="6" fill="rgba(232,201,139,0.08)" stroke="rgba(232,201,139,0.35)" stroke-width="1"/>
+            <text x="135" y="149" fill="rgba(232,201,139,0.8)" font-size="7" font-family="monospace" text-anchor="middle">Cognito</text>
+            <text x="135" y="162" fill="rgba(232,201,139,0.4)" font-size="6" font-family="monospace" text-anchor="middle">Auth</text>
+            <!-- S3 -->
+            <rect x="185" y="135" width="70" height="36" rx="6" fill="rgba(180,135,255,0.08)" stroke="rgba(180,135,255,0.35)" stroke-width="1"/>
+            <text x="220" y="149" fill="rgba(180,135,255,0.8)" font-size="7" font-family="monospace" text-anchor="middle">S3</text>
+            <text x="220" y="162" fill="rgba(180,135,255,0.4)" font-size="6" font-family="monospace" text-anchor="middle">Storage</text>
+            <!-- DynamoDB -->
+            <rect x="270" y="135" width="75" height="36" rx="6" fill="rgba(95,184,255,0.08)" stroke="rgba(95,184,255,0.35)" stroke-width="1"/>
+            <text x="307" y="149" fill="rgba(95,184,255,0.8)" font-size="7" font-family="monospace" text-anchor="middle">DynamoDB</text>
+            <text x="307" y="162" fill="rgba(95,184,255,0.4)" font-size="6" font-family="monospace" text-anchor="middle">NoSQL DB</text>
+            <!-- IAM -->
+            <rect x="30" y="135" width="55" height="36" rx="6" fill="rgba(126,231,135,0.08)" stroke="rgba(126,231,135,0.35)" stroke-width="1"/>
+            <text x="57" y="149" fill="rgba(126,231,135,0.8)" font-size="7" font-family="monospace" text-anchor="middle">IAM</text>
+            <text x="57" y="162" fill="rgba(126,231,135,0.4)" font-size="6" font-family="monospace" text-anchor="middle">Roles</text>
+            <!-- Connection lines to React -->
+            <rect x="145" y="205" width="130" height="45" rx="8" fill="rgba(95,184,255,0.08)" stroke="rgba(95,184,255,0.3)" stroke-width="1.5"/>
+            <text x="210" y="222" fill="rgba(95,184,255,0.8)" font-size="8" font-family="monospace" text-anchor="middle">React.js Frontend</text>
+            <text x="210" y="238" fill="rgba(95,184,255,0.4)" font-size="7" font-family="monospace" text-anchor="middle">Job Portal UI</text>
+            <line x1="135" y1="171" x2="185" y2="205" stroke="rgba(232,201,139,0.25)" stroke-width="1" stroke-dasharray="3 2"/>
+            <line x1="220" y1="171" x2="215" y2="205" stroke="rgba(180,135,255,0.25)" stroke-width="1" stroke-dasharray="3 2"/>
+            <line x1="307" y1="171" x2="245" y2="205" stroke="rgba(95,184,255,0.25)" stroke-width="1" stroke-dasharray="3 2"/>
+            <!-- Bottom labels -->
+            <text x="30" y="280" fill="rgba(255,255,255,0.15)" font-size="7" font-family="monospace">Cloud-native architecture · Serverless · IAM-secured access control</text>
+          </svg>
+        </div>
+        <div class="work-overlay">
+          <span class="work-tag">Cloud · AWS · 2025</span>
+          <div class="work-info">
+            <div>
+              <h3>Cloud-Based Job Portal</h3>
+              <div class="meta">React.js · AWS Cognito · S3 · DynamoDB</div>
+            </div>
+            <div class="icon">↗</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- P5: Student Management -->
+      <article class="work-card med reveal reveal-delay-2" data-project="4">
+        <div class="work-visual">
+          <svg viewBox="0 0 420 315" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="420" height="315" fill="#080a0e"/>
+            <!-- CI/CD Pipeline -->
+            <text x="210" y="40" fill="rgba(255,255,255,0.15)" font-size="9" font-family="monospace" text-anchor="middle">CI/CD PIPELINE</text>
+            <!-- Stage boxes -->
+            <rect x="25" y="55" width="70" height="45" rx="6" fill="rgba(126,231,135,0.08)" stroke="rgba(126,231,135,0.35)" stroke-width="1"/>
+            <text x="60" y="73" fill="rgba(126,231,135,0.8)" font-size="7" font-family="monospace" text-anchor="middle">GitHub</text>
+            <text x="60" y="85" fill="rgba(126,231,135,0.5)" font-size="6" font-family="monospace" text-anchor="middle">push</text>
+            <line x1="95" y1="77" x2="115" y2="77" stroke="rgba(126,231,135,0.5)" stroke-width="1.5" marker-end="url(#ga)"/>
+            <rect x="115" y="55" width="70" height="45" rx="6" fill="rgba(232,201,139,0.08)" stroke="rgba(232,201,139,0.35)" stroke-width="1"/>
+            <text x="150" y="73" fill="rgba(232,201,139,0.8)" font-size="7" font-family="monospace" text-anchor="middle">Jenkins</text>
+            <text x="150" y="85" fill="rgba(232,201,139,0.5)" font-size="6" font-family="monospace" text-anchor="middle">build</text>
+            <line x1="185" y1="77" x2="205" y2="77" stroke="rgba(232,201,139,0.5)" stroke-width="1.5" marker-end="url(#ga)"/>
+            <rect x="205" y="55" width="75" height="45" rx="6" fill="rgba(180,135,255,0.08)" stroke="rgba(180,135,255,0.35)" stroke-width="1"/>
+            <text x="242" y="73" fill="rgba(180,135,255,0.8)" font-size="7" font-family="monospace" text-anchor="middle">SonarQube</text>
+            <text x="242" y="85" fill="rgba(180,135,255,0.5)" font-size="6" font-family="monospace" text-anchor="middle">quality</text>
+            <line x1="280" y1="77" x2="300" y2="77" stroke="rgba(180,135,255,0.5)" stroke-width="1.5" marker-end="url(#ga)"/>
+            <rect x="300" y="55" width="70" height="45" rx="6" fill="rgba(95,184,255,0.08)" stroke="rgba(95,184,255,0.35)" stroke-width="1"/>
+            <text x="335" y="73" fill="rgba(95,184,255,0.8)" font-size="7" font-family="monospace" text-anchor="middle">Docker</text>
+            <text x="335" y="85" fill="rgba(95,184,255,0.5)" font-size="6" font-family="monospace" text-anchor="middle">deploy</text>
+            <!-- Docker containers -->
+            <rect x="30" y="130" width="120" height="80" rx="8" fill="rgba(95,184,255,0.05)" stroke="rgba(95,184,255,0.25)" stroke-width="1"/>
+            <text x="90" y="150" fill="rgba(95,184,255,0.6)" font-size="7" font-family="monospace" text-anchor="middle">Container: app</text>
+            <rect x="40" y="158" width="100" height="40" rx="5" fill="rgba(95,184,255,0.08)" stroke="rgba(95,184,255,0.2)" stroke-width="1"/>
+            <text x="90" y="175" fill="rgba(95,184,255,0.7)" font-size="7" font-family="monospace" text-anchor="middle">Java Spring Boot</text>
+            <text x="90" y="188" fill="rgba(95,184,255,0.4)" font-size="6" font-family="monospace" text-anchor="middle">port: 8080</text>
+            <!-- SonarQube report -->
+            <rect x="175" y="130" width="210" height="80" rx="8" fill="rgba(180,135,255,0.05)" stroke="rgba(180,135,255,0.25)" stroke-width="1"/>
+            <text x="280" y="150" fill="rgba(180,135,255,0.6)" font-size="7" font-family="monospace" text-anchor="middle">Code Quality Report</text>
+            <text x="195" y="167" fill="rgba(126,231,135,0.7)" font-size="7" font-family="monospace">Bugs: 0</text>
+            <text x="265" y="167" fill="rgba(126,231,135,0.7)" font-size="7" font-family="monospace">Coverage: 87%</text>
+            <text x="195" y="183" fill="rgba(126,231,135,0.7)" font-size="7" font-family="monospace">Smells: 3</text>
+            <text x="265" y="183" fill="rgba(126,231,135,0.7)" font-size="7" font-family="monospace">Grade: A</text>
+            <text x="195" y="199" fill="rgba(232,201,139,0.5)" font-size="6" font-family="monospace">Security: PASSED ✓</text>
+            <!-- Student UI -->
+            <rect x="30" y="230" width="360" height="60" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+            <text x="210" y="250" fill="rgba(255,255,255,0.3)" font-size="7" font-family="monospace" text-anchor="middle">Student Management System · Attendance · Performance Analytics</text>
+            <rect x="50" y="258" width="50" height="20" rx="4" fill="rgba(126,231,135,0.15)"/>
+            <rect x="110" y="258" width="70" height="20" rx="4" fill="rgba(122,162,255,0.15)"/>
+            <rect x="190" y="258" width="80" height="20" rx="4" fill="rgba(232,201,139,0.15)"/>
+            <rect x="280" y="258" width="60" height="20" rx="4" fill="rgba(180,135,255,0.15)"/>
+            <defs><marker id="ga" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="rgba(126,231,135,0.6)"/></marker></defs>
+          </svg>
+        </div>
+        <div class="work-overlay">
+          <span class="work-tag">DevOps · Java · 2025</span>
+          <div class="work-info">
+            <div>
+              <h3>Student Management System</h3>
+              <div class="meta">Java · Docker · Jenkins · SonarQube</div>
+            </div>
+            <div class="icon">↗</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- P6: Sentiment Analysis -->
+      <article class="work-card wide reveal" data-project="5">
+        <div class="work-visual">
+          <svg viewBox="0 0 660 371" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="660" height="371" fill="#07080c"/>
+            <!-- NLP Pipeline top -->
+            <rect x="30" y="40" width="90" height="40" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            <text x="75" y="56" fill="rgba(255,255,255,0.6)" font-size="7" font-family="monospace" text-anchor="middle">Raw Review</text>
+            <text x="75" y="68" fill="rgba(255,255,255,0.3)" font-size="6" font-family="monospace" text-anchor="middle">text input</text>
+            <line x1="120" y1="60" x2="145" y2="60" stroke="rgba(122,162,255,0.5)" stroke-width="1.5" marker-end="url(#nb)"/>
+            <rect x="145" y="40" width="90" height="40" rx="6" fill="rgba(122,162,255,0.08)" stroke="rgba(122,162,255,0.35)" stroke-width="1"/>
+            <text x="190" y="56" fill="rgba(122,162,255,0.8)" font-size="7" font-family="monospace" text-anchor="middle">Tokenizer</text>
+            <text x="190" y="68" fill="rgba(122,162,255,0.4)" font-size="6" font-family="monospace" text-anchor="middle">ALBERT</text>
+            <line x1="235" y1="60" x2="260" y2="60" stroke="rgba(122,162,255,0.5)" stroke-width="1.5" marker-end="url(#nb)"/>
+            <rect x="260" y="40" width="90" height="40" rx="6" fill="rgba(232,201,139,0.08)" stroke="rgba(232,201,139,0.35)" stroke-width="1"/>
+            <text x="305" y="56" fill="rgba(232,201,139,0.8)" font-size="7" font-family="monospace" text-anchor="middle">Encoder</text>
+            <text x="305" y="68" fill="rgba(232,201,139,0.4)" font-size="6" font-family="monospace" text-anchor="middle">768-dim</text>
+            <line x1="350" y1="60" x2="375" y2="60" stroke="rgba(232,201,139,0.5)" stroke-width="1.5" marker-end="url(#nb)"/>
+            <rect x="375" y="40" width="90" height="40" rx="6" fill="rgba(180,135,255,0.08)" stroke="rgba(180,135,255,0.35)" stroke-width="1"/>
+            <text x="420" y="56" fill="rgba(180,135,255,0.8)" font-size="7" font-family="monospace" text-anchor="middle">Classifier</text>
+            <text x="420" y="68" fill="rgba(180,135,255,0.4)" font-size="6" font-family="monospace" text-anchor="middle">fine-tuned</text>
+            <line x1="465" y1="60" x2="490" y2="60" stroke="rgba(180,135,255,0.5)" stroke-width="1.5" marker-end="url(#nb)"/>
+            <rect x="490" y="40" width="100" height="40" rx="6" fill="rgba(95,184,255,0.08)" stroke="rgba(95,184,255,0.35)" stroke-width="1"/>
+            <text x="540" y="56" fill="rgba(95,184,255,0.8)" font-size="7" font-family="monospace" text-anchor="middle">Sentiment</text>
+            <text x="540" y="68" fill="rgba(95,184,255,0.4)" font-size="6" font-family="monospace" text-anchor="middle">Positive / Negative</text>
+            <!-- Dashboard row -->
+            <rect x="30" y="115" width="180" height="210" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+            <text x="120" y="138" fill="rgba(255,255,255,0.3)" font-size="8" font-family="monospace" text-anchor="middle">Review Distribution</text>
+            <!-- Donut chart -->
+            <circle cx="120" cy="195" r="42" fill="none" stroke="rgba(126,231,135,0.8)" stroke-width="12" stroke-dasharray="158 106"/>
+            <circle cx="120" cy="195" r="42" fill="none" stroke="rgba(255,100,100,0.7)" stroke-width="12" stroke-dasharray="80 184" stroke-dashoffset="-158"/>
+            <circle cx="120" cy="195" r="42" fill="none" stroke="rgba(255,200,50,0.7)" stroke-width="12" stroke-dasharray="26 238" stroke-dashoffset="-238"/>
+            <text x="120" y="200" fill="rgba(255,255,255,0.7)" font-size="14" font-family="monospace" text-anchor="middle" font-weight="600">1.2k</text>
+            <text x="120" y="212" fill="rgba(255,255,255,0.3)" font-size="7" font-family="monospace" text-anchor="middle">reviews</text>
+            <!-- Legend -->
+            <circle cx="48" cy="258" r="4" fill="rgba(126,231,135,0.8)"/>
+            <text x="58" y="262" fill="rgba(255,255,255,0.4)" font-size="7" font-family="monospace">Positive 60%</text>
+            <circle cx="48" cy="276" r="4" fill="rgba(255,100,100,0.8)"/>
+            <text x="58" y="280" fill="rgba(255,255,255,0.4)" font-size="7" font-family="monospace">Negative 30%</text>
+            <circle cx="48" cy="294" r="4" fill="rgba(255,200,50,0.8)"/>
+            <text x="58" y="298" fill="rgba(255,255,255,0.4)" font-size="7" font-family="monospace">Neutral 10%</text>
+            <!-- Streamlit panel -->
+            <rect x="230" y="115" width="400" height="210" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+            <rect x="230" y="115" width="400" height="28" rx="10" fill="rgba(255,255,255,0.03)"/>
+            <text x="430" y="133" fill="rgba(255,255,255,0.3)" font-size="7" font-family="monospace" text-anchor="middle">Streamlit App — Hospital Review Analyzer</text>
+            <!-- Sample reviews -->
+            <rect x="245" y="157" width="370" height="30" rx="5" fill="rgba(126,231,135,0.06)" stroke="rgba(126,231,135,0.2)" stroke-width="1"/>
+            <text x="258" y="170" fill="rgba(126,231,135,0.7)" font-size="7" font-family="monospace">✓ POSITIVE · "Excellent care and very responsive staff..."</text>
+            <text x="258" y="181" fill="rgba(126,231,135,0.4)" font-size="6" font-family="monospace">confidence: 0.94</text>
+            <rect x="245" y="197" width="370" height="30" rx="5" fill="rgba(255,100,100,0.06)" stroke="rgba(255,100,100,0.2)" stroke-width="1"/>
+            <text x="258" y="210" fill="rgba(255,100,100,0.7)" font-size="7" font-family="monospace">✗ NEGATIVE · "Long wait times, unresponsive nurses..."</text>
+            <text x="258" y="221" fill="rgba(255,100,100,0.4)" font-size="6" font-family="monospace">confidence: 0.88</text>
+            <rect x="245" y="237" width="370" height="30" rx="5" fill="rgba(255,200,50,0.06)" stroke="rgba(255,200,50,0.2)" stroke-width="1"/>
+            <text x="258" y="250" fill="rgba(255,200,50,0.7)" font-size="7" font-family="monospace">~ NEUTRAL · "Average experience, nothing special..."</text>
+            <text x="258" y="261" fill="rgba(255,200,50,0.4)" font-size="6" font-family="monospace">confidence: 0.72</text>
+            <!-- Stats bar -->
+            <rect x="245" y="280" width="370" height="35" rx="5" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+            <text x="265" y="295" fill="rgba(255,255,255,0.3)" font-size="7" font-family="monospace">Model: ALBERT-base-v2</text>
+            <text x="430" y="295" fill="rgba(95,184,255,0.5)" font-size="7" font-family="monospace">Accuracy: 91.4%</text>
+            <text x="265" y="307" fill="rgba(255,255,255,0.2)" font-size="6" font-family="monospace">NLP · Transformers · Fine-tuned on healthcare data</text>
+            <defs><marker id="nb" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="rgba(122,162,255,0.6)"/></marker></defs>
+          </svg>
+        </div>
+        <div class="work-overlay">
+          <span class="work-tag">NLP · AI · 2025</span>
+          <div class="work-info">
+            <div>
+              <h3>Hospital Review Sentiment Analysis</h3>
+              <div class="meta">Python · NLP · ALBERT · Streamlit</div>
+            </div>
+            <div class="icon">↗</div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background:linear-gradient(180deg,#07080b 0%,#0a0c12 100%)">
+  <div class="container about">
+    <div class="about-text reveal">
+      <div class="mono" style="margin-bottom:18px">— 02 / About</div>
+      <h2>Engineering products with <span class="it">curiosity,</span> scalability and impact.</h2>
+      <p>I am Sambhav Shah, a Computer Engineering student passionate about building scalable web applications, intelligent systems and modern software solutions.</p>
+      <p>My interests span Full Stack Development, Artificial Intelligence, Cloud Computing, Data Engineering and System Design. I enjoy transforming complex problems into practical software products while continuously learning modern technologies and engineering best practices.</p>
+      <div class="about-focus">
+        <h4>Current Focus</h4>
+        <div class="focus-tags">
+          <span class="focus-tag">Full Stack Development</span>
+          <span class="focus-tag">AI Engineering</span>
+          <span class="focus-tag">Cloud Technologies</span>
+          <span class="focus-tag">Data Engineering</span>
+          <span class="focus-tag">System Design</span>
+        </div>
+      </div>
+      <div class="about-stats">
+        <div class="stat"><div class="num">15+</div><div class="lbl">Projects Built</div></div>
+        <div class="stat"><div class="num">100+</div><div class="lbl">LeetCode Problems</div></div>
+        <div class="stat"><div class="num">10+</div><div class="lbl">Technologies Used</div></div>
+        <div class="stat"><div class="num">Multiple</div><div class="lbl" style="font-size:.6rem">AI &amp; Cloud Projects</div></div>
+      </div>
+    </div>
+    <div class="about-visual reveal reveal-delay-1">
+      <div class="about-visual-inner">
+        <canvas id="aboutCanvas" width="600" height="750"></canvas>
+      </div>
+      <div class="vbadge"><span class="l">Currently building</span><span>Full Stack + AI · 2026</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="mono" style="margin-bottom:14px">— 03 / Skills</div>
+        <h2>Tech <span class="it">stack.</span></h2>
+      </div>
+      <p>End-to-end engineering capabilities across frontend, backend, AI/ML, cloud and DevOps.</p>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-cat">
+        <div class="skill-cat-label">Frontend</div>
+        <h4>UI Engineering</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Next.js</span>
+          <span class="skill-tag">TypeScript</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">HTML/CSS</span>
+        </div>
+      </div>
+      <div class="skill-cat reveal reveal-delay-1">
+        <div class="skill-cat-label">Backend</div>
+        <h4>Server &amp; Data</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Express.js</span>
+          <span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">REST APIs</span>
+          <span class="skill-tag">Java</span>
+        </div>
+      </div>
+      <div class="skill-cat reveal reveal-delay-2">
+        <div class="skill-cat-label">AI / ML</div>
+        <h4>Intelligent Systems</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">OpenAI API</span>
+          <span class="skill-tag">LangChain</span>
+          <span class="skill-tag">OpenCV</span>
+          <span class="skill-tag">NLP</span>
+          <span class="skill-tag">Python</span>
+        </div>
+      </div>
+      <div class="skill-cat reveal reveal-delay-3">
+        <div class="skill-cat-label">Cloud &amp; DevOps</div>
+        <h4>Infrastructure</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Jenkins</span>
+          <span class="skill-tag">GitHub Actions</span>
+          <span class="skill-tag">CI/CD</span>
+          <span class="skill-tag">SonarQube</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section id="capabilities" style="background:#06070a">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="mono" style="margin-bottom:14px">— 04 / Capabilities</div>
+        <h2>What I <span class="it">build.</span></h2>
+      </div>
+      <p>End-to-end software engineering — from frontend interfaces to backend systems, AI pipelines, and cloud infrastructure.</p>
+    </div>
+    <div class="cap-grid">
+      <div class="cap reveal"><div><div class="ic">◇</div><div class="num">001</div><h3>Frontend Engineering</h3><p>Modern responsive interfaces using React, Next.js and TypeScript with pixel-perfect attention to detail.</p></div></div>
+      <div class="cap reveal reveal-delay-1"><div><div class="ic">◯</div><div class="num">002</div><h3>Backend Systems</h3><p>REST APIs, databases, authentication and scalable architectures built for performance and reliability.</p></div></div>
+      <div class="cap reveal reveal-delay-2"><div><div class="ic">△</div><div class="num">003</div><h3>AI Engineering</h3><p>LLM applications, prompt engineering, RAG systems and intelligent automation pipelines.</p></div></div>
+      <div class="cap reveal"><div><div class="ic">✦</div><div class="num">004</div><h3>Data Engineering</h3><p>Data pipelines, analytics, ETL workflows and reporting systems for actionable insights.</p></div></div>
+      <div class="cap reveal reveal-delay-1"><div><div class="ic">▢</div><div class="num">005</div><h3>Cloud &amp; DevOps</h3><p>Docker, CI/CD, deployment pipelines and cloud infrastructure on AWS and modern platforms.</p></div></div>
+      <div class="cap reveal reveal-delay-2"><div><div class="ic">∞</div><div class="num">006</div><h3>System Design</h3><p>Designing maintainable, scalable software architectures that grow with the product.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE / JOURNEY -->
+<section id="experience">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="mono" style="margin-bottom:14px">— 05 / Journey</div>
+        <h2>Engineering <span class="it">timeline.</span></h2>
+      </div>
+      <p>A fresher's journey — from learning fundamentals to building production-grade full-stack and AI systems.</p>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-year">2026</div>
+        <div class="tl-title">Full Stack &amp; AI Engineering</div>
+        <div class="tl-sub">Current Focus</div>
+        <ul class="tl-list">
+          <li>Building scalable web applications with React, Next.js and Node.js</li>
+          <li>Developing AI-powered systems using OpenAI API and LangChain</li>
+          <li>Learning advanced system design and distributed architecture</li>
+          <li>Exploring LLM applications and prompt engineering</li>
+          <li>Creating production-ready projects for portfolio</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2025</div>
+        <div class="tl-title">Software Development Projects</div>
+        <div class="tl-sub">Applied Engineering</div>
+        <ul class="tl-list">
+          <li>Built MERN stack applications including Money Matrix finance app</li>
+          <li>Developed cloud-based job portal on AWS (Cognito, S3, DynamoDB)</li>
+          <li>Implemented NLP sentiment analysis using ALBERT transformer model</li>
+          <li>Created machine learning solutions with TensorFlow and OpenCV</li>
+          <li>Practiced DevOps workflows with Docker, Jenkins and SonarQube</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2024</div>
+        <div class="tl-title">Computer Engineering Foundation</div>
+        <div class="tl-sub">Core Learning</div>
+        <ul class="tl-list">
+          <li>Mastered Data Structures and Algorithms — 100+ LeetCode problems</li>
+          <li>Java programming — OOP, design patterns and clean code principles</li>
+          <li>Python development — scripting, automation and ML foundations</li>
+          <li>Database fundamentals — SQL, NoSQL and query optimization</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GITHUB -->
+<section id="github" style="background:#06070a">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="mono" style="margin-bottom:14px">— 06 / GitHub</div>
+        <h2>Open source <span class="it">activity.</span></h2>
+      </div>
+      <p>Consistent contributions across full-stack, AI, and cloud engineering repositories.</p>
+    </div>
+    <div class="github-grid reveal">
+      <div class="gh-card">
+        <div class="gh-num">15+</div>
+        <div class="gh-lbl">Repositories</div>
+      </div>
+      <div class="gh-card reveal reveal-delay-1">
+        <div class="gh-num">100+</div>
+        <div class="gh-lbl">Total Commits</div>
+      </div>
+      <div class="gh-card reveal reveal-delay-2">
+        <div style="margin-bottom:16px">
+          <div class="gh-lbl" style="margin-bottom:12px">Languages Used</div>
+          <div class="gh-lang-grid">
+            <div class="gh-lang"><div class="gh-lang-dot" style="background:#f1e05a"></div>JavaScript</div>
+            <div class="gh-lang"><div class="gh-lang-dot" style="background:#3572A5"></div>Python</div>
+            <div class="gh-lang"><div class="gh-lang-dot" style="background:#b07219"></div>Java</div>
+            <div class="gh-lang"><div class="gh-lang-dot" style="background:#2b7489"></div>TypeScript</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="gh-activity reveal reveal-delay-1">
+      <h4 class="mono" style="margin-bottom:20px">Activity by Category</h4>
+      <div class="activity-bar-row">
+        <div class="activity-label">Full Stack</div>
+        <div class="activity-bar"><div class="activity-fill" style="width:85%"></div></div>
+        <div class="activity-val">85%</div>
+      </div>
+      <div class="activity-bar-row">
+        <div class="activity-label">AI / ML</div>
+        <div class="activity-bar"><div class="activity-fill" style="width:70%"></div></div>
+        <div class="activity-val">70%</div>
+      </div>
+      <div class="activity-bar-row">
+        <div class="activity-label">Cloud</div>
+        <div class="activity-bar"><div class="activity-fill" style="width:55%"></div></div>
+        <div class="activity-val">55%</div>
+      </div>
+      <div class="activity-bar-row">
+        <div class="activity-label">DevOps</div>
+        <div class="activity-bar"><div class="activity-fill" style="width:60%"></div></div>
+        <div class="activity-val">60%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="mono" style="margin-bottom:14px">— 07 / Certifications</div>
+        <h2>Learning <span class="it">milestones.</span></h2>
+      </div>
+      <p>Certifications demonstrating depth across cloud, AI, and software engineering domains.</p>
+    </div>
+    <div class="cert-grid reveal">
+      <div class="cert-card">
+        <div class="cert-icon">☁️</div>
+        <h4>AWS Cloud Fundamentals</h4>
+        <p>Amazon Web Services</p>
+      </div>
+      <div class="cert-card reveal reveal-delay-1">
+        <div class="cert-icon">🤖</div>
+        <h4>AI &amp; Machine Learning</h4>
+        <p>Deep Learning · NLP · CV</p>
+      </div>
+      <div class="cert-card reveal reveal-delay-2">
+        <div class="cert-icon">⚡</div>
+        <h4>Full Stack Development</h4>
+        <p>MERN Stack · REST APIs</p>
+      </div>
+      <div class="cert-card reveal reveal-delay-3">
+        <div class="cert-icon">🔧</div>
+        <h4>Data Engineering</h4>
+        <p>Pipelines · ETL · Analytics</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" style="background:#06070a">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="mono" style="margin-bottom:14px">— 08 / Process</div>
+        <h2>How I <span class="it">build.</span></h2>
+      </div>
+      <p>A systematic, iterative approach — from understanding the problem to shipping production-ready solutions.</p>
+    </div>
+    <div class="process-grid">
+      <div class="step reveal"><h4>Research</h4><p>Understand problem, users and technical constraints. Define requirements and success metrics.</p></div>
+      <div class="step reveal reveal-delay-1"><h4>Architecture</h4><p>Plan scalable system design, choose the right technology stack and map data flows.</p></div>
+      <div class="step reveal reveal-delay-2"><h4>Development</h4><p>Build, test and iterate with clean engineering practices. Write maintainable, well-documented code.</p></div>
+      <div class="step reveal reveal-delay-3"><h4>Deployment</h4><p>Launch, monitor and continuously improve. Set up CI/CD, logging and performance tracking.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="contact-inner reveal">
+      <div class="mono" style="margin-bottom:20px;color:var(--accent)">— 09 / Let's connect</div>
+      <h2>Let's build something <span class="it">meaningful.</span></h2>
+      <p>Whether it's a startup idea, AI product, cloud solution or software engineering challenge, I'd love to connect.</p>
+      <div class="contact-btns">
+        <a href="mailto:sambhav@example.com" class="contact-email">Email Me <span style="font-size:1.1rem">→</span></a>
+        <a href="#" class="btn btn-ghost" style="border-radius:100px">LinkedIn</a>
+        <a href="#" class="btn btn-ghost" style="border-radius:100px">GitHub</a>
+      </div>
+      <div class="contact-social">
+        <a href="#">github.com/sambhav</a><a href="#">linkedin.com/in/sambhav</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot">
+    <div class="brand"><span class="dot"></span>SAMBHAV<span style="color:var(--text-mute);font-weight:400">.dev</span></div>
+    <div class="mono">© 2026 Sambhav Shah · Full Stack Developer &amp; AI Engineer</div>
+    <div class="mono"><span id="clock">--:--:--</span> · MUM</div>
+  </div>
+</footer>
+
+<script>
+// ————————————————————————————————————————————————
+// PROJECT DATA
+// ————————————————————————————————————————————————
+const projects = [
+  {
+    tag: 'AI Platform · 2026',
+    title: 'AI Prompt Processing System',
+    tech: ['React', 'Node.js', 'OpenAI API', 'MongoDB'],
+    problem: 'Users struggle to create effective AI prompts. Built an AI-powered platform that optimizes and categorizes prompts before processing through LLMs, improving response quality and user experience.',
+    features: ['Prompt Optimization Engine','Prompt Categorization (NLP)','OpenAI GPT-4 Integration','Analytics Dashboard','History Tracking & Replay','REST API Backend'],
+    vizId: 0
+  },
+  {
+    tag: 'Full Stack · MERN · 2025',
+    title: 'Money Matrix — Finance Dashboard',
+    tech: ['MongoDB', 'Express.js', 'React', 'Node.js'],
+    problem: 'A full-stack personal finance management platform providing real-time expense tracking, budget planning, and financial analytics with secure JWT authentication.',
+    features: ['Expense & Income Tracking','Budget Planning & Goals','Financial Insights & Charts','JWT Authentication','Analytics Dashboard','Responsive Mobile UI'],
+    vizId: 1
+  },
+  {
+    tag: 'AI / ML · Python · 2025',
+    title: 'Neuro Metric — Stress Level Detection',
+    tech: ['Python', 'TensorFlow', 'OpenCV', 'Flask'],
+    problem: 'Detect stress levels using facial expression analysis and deep learning. Real-time camera feed analysis identifies emotion patterns and classifies stress severity.',
+    features: ['Real-Time Face Detection','Emotion Recognition Model','Stress Level Classification','TensorFlow CNN Integration','Flask REST API','Webcam Live Analysis'],
+    vizId: 2
+  },
+  {
+    tag: 'Cloud · AWS · 2025',
+    title: 'Cloud-Based Job Portal',
+    tech: ['React.js', 'AWS Cognito', 'AWS S3', 'DynamoDB', 'IAM'],
+    problem: 'A cloud-native job portal built entirely on AWS serverless infrastructure, featuring secure authentication, resume storage, and candidate management without managing servers.',
+    features: ['AWS Cognito Authentication','Job Listings & Search','S3 Resume Storage','Candidate Tracking','IAM Role-based Access','DynamoDB NoSQL Backend'],
+    vizId: 3
+  },
+  {
+    tag: 'DevOps · Java · 2025',
+    title: 'Student Management System',
+    tech: ['Java', 'Spring Boot', 'Docker', 'Jenkins', 'SonarQube'],
+    problem: 'Student management system with automated CI/CD pipeline, containerized deployment, and code quality monitoring — demonstrating production-grade DevOps practices.',
+    features: ['Student & Attendance Tracking','Performance Analytics','Jenkins CI/CD Pipeline','Docker Containerization','SonarQube Code Quality','Automated Test Coverage'],
+    vizId: 4
+  },
+  {
+    tag: 'NLP · AI · 2025',
+    title: 'Hospital Review Sentiment Analysis',
+    tech: ['Python', 'ALBERT', 'NLP', 'Streamlit', 'Transformers'],
+    problem: 'Analyze hospital reviews using fine-tuned ALBERT transformer model to identify sentiment patterns, helping healthcare providers understand patient feedback at scale.',
+    features: ['ALBERT Transformer Model','Multi-class Sentiment Classification','Streamlit Interactive Dashboard','Batch Review Processing','Confidence Score Output','Healthcare Domain Fine-tuning'],
+    vizId: 5
+  }
+];
+
+// ————————————————————————————————————————————————
+// MODAL SYSTEM
+// ————————————————————————————————————————————————
+const overlay = document.getElementById('modalOverlay');
+const modal = document.getElementById('modal');
+const mClose = document.getElementById('modalClose');
+const mTag = document.getElementById('mTag');
+const mTitle = document.getElementById('mTitle');
+const mTech = document.getElementById('mTech');
+const mVisual = document.getElementById('mVisual');
+const mProblem = document.getElementById('mProblem');
+const mFeatures = document.getElementById('mFeatures');
+
+function openModal(idx) {
+  const p = projects[idx];
+  mTag.textContent = p.tag;
+  mTitle.textContent = p.title;
+  mTech.innerHTML = p.tech.map(t => `<span>${t}</span>`).join('');
+  // Clone SVG from card
+  const cards = document.querySelectorAll('[data-project]');
+  let svgCard = null;
+  cards.forEach(c => { if(parseInt(c.dataset.project) === idx) svgCard = c; });
+  if(svgCard) {
+    const svg = svgCard.querySelector('.work-visual svg');
+    if(svg) mVisual.innerHTML = svg.outerHTML;
+  }
+  mProblem.innerHTML = p.problem ? `<h4>Overview</h4><p>${p.problem}</p>` : '';
+  mFeatures.innerHTML = p.features.map(f => `<li>${f}</li>`).join('');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('[data-project]').forEach(card => {
+  card.addEventListener('click', () => openModal(parseInt(card.dataset.project)));
+});
+mClose.addEventListener('click', closeModal);
+overlay.addEventListener('click', e => { if(e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+// ————————————————————————————————————————————————
+// HERO CANVAS
+// ————————————————————————————————————————————————
+(function(){
+  const canvas = document.getElementById('heroCanvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, particles, nodes, codeStreams;
+  const mouse = {x: -1000, y: -1000};
+
+  function resize(){
+    w = canvas.width = canvas.offsetWidth * window.devicePixelRatio;
+    h = canvas.height = canvas.offsetHeight * window.devicePixelRatio;
+    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    w = canvas.offsetWidth;
+    h = canvas.offsetHeight;
+  }
+
+  function createParticle(){
+    const chars = ['0','1','{','}','(',')',';','/','<','>','=','→','λ','∫','π','Δ','∑','⟨','⟩','::','fn','if','let','var','API','GET','POST','SQL','AI','ML'];
+    return {
+      x: Math.random()*w,
+      y: Math.random()*h,
+      vx: (Math.random()-0.5)*0.3,
+      vy: -Math.random()*0.5 - 0.1,
+      char: chars[Math.floor(Math.random()*chars.length)],
+      alpha: Math.random()*0.3 + 0.05,
+      size: Math.random()*10 + 8,
+      life: Math.random()*400 + 200,
+      maxLife: 0
+    };
+  }
+
+  function createNode(){
+    return {
+      x: Math.random()*w,
+      y: Math.random()*h,
+      vx: (Math.random()-0.5)*0.4,
+      vy: (Math.random()-0.5)*0.4,
+      radius: Math.random()*3 + 1.5,
+      alpha: Math.random()*0.4 + 0.1
+    };
+  }
+
+  function createStream(){
+    const snippets = [
+      'const app = express();',
+      'await db.connect();',
+      'return res.json(data);',
+      'model.fit(X_train, y_train)',
+      'docker build -t app .',
+      'git push origin main',
+      'npm run deploy',
+      'SELECT * FROM users',
+      'import tensorflow as tf',
+      'chain.invoke(prompt)',
+      'fetch("/api/v1/data")',
+      'export default App;',
+      'pipeline.run()',
+      'llm.generate(tokens)',
+      'kubectl apply -f deploy.yaml'
+    ];
+    return {
+      x: Math.random()*w*0.8 + w*0.1,
+      y: h + 20,
+      vy: -Math.random()*0.6 - 0.3,
+      text: snippets[Math.floor(Math.random()*snippets.length)],
+      alpha: 0,
+      maxAlpha: Math.random()*0.12 + 0.04,
+      size: Math.random()*4 + 9
+    };
+  }
+
+  function init(){
+    resize();
+    particles = Array.from({length: 60}, createParticle);
+    particles.forEach(p => p.maxLife = p.life);
+    nodes = Array.from({length: 30}, createNode);
+    codeStreams = Array.from({length: 8}, createStream);
+  }
+
+  function drawNetwork(){
+    ctx.lineWidth = 0.5;
+    for(let i=0; i<nodes.length; i++){
+      for(let j=i+1; j<nodes.length; j++){
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < 180){
+          const a = (1 - dist/180) * 0.12;
+          ctx.strokeStyle = `rgba(122,162,255,${a})`;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    nodes.forEach(n => {
+      const dx = mouse.x - n.x;
+      const dy = mouse.y - n.y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if(dist < 200){ n.vx -= dx * 0.00005; n.vy -= dy * 0.00005; }
+      n.x += n.vx; n.y += n.vy;
+      if(n.x < 0 || n.x > w) n.vx *= -1;
+      if(n.y < 0 || n.y > h) n.vy *= -1;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(232,201,139,${n.alpha})`;
+      ctx.fill();
+    });
+  }
+
+  function drawParticles(){
+    ctx.font = '500 11px "JetBrains Mono", monospace';
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.life--;
+      if(p.life <= 0 || p.y < -20){
+        Object.assign(p, createParticle());
+        p.y = h + 20;
+        p.maxLife = p.life;
+      }
+      const fadeIn = Math.min(1, (p.maxLife - p.life) / 60);
+      const fadeOut = Math.min(1, p.life / 60);
+      const a = p.alpha * fadeIn * fadeOut;
+      ctx.fillStyle = `rgba(180,135,255,${a})`;
+      ctx.fillText(p.char, p.x, p.y);
+    });
+  }
+
+  function drawStreams(){
+    codeStreams.forEach(s => {
+      s.y += s.vy;
+      if(s.y < -30) Object.assign(s, createStream());
+      const progress = 1 - (s.y / h);
+      s.alpha = s.maxAlpha * Math.sin(progress * Math.PI);
+      ctx.font = `400 ${s.size}px "JetBrains Mono", monospace`;
+      ctx.fillStyle = `rgba(95,184,255,${s.alpha})`;
+      ctx.fillText(s.text, s.x, s.y);
+    });
+  }
+
+  function animate(){
+    ctx.clearRect(0, 0, w, h);
+    drawNetwork();
+    drawParticles();
+    drawStreams();
+    requestAnimationFrame(animate);
+  }
+
+  canvas.addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - r.left;
+    mouse.y = e.clientY - r.top;
+  });
+  canvas.addEventListener('mouseleave', () => { mouse.x = -1000; mouse.y = -1000; });
+  window.addEventListener('resize', () => {
+    resize();
+    nodes.forEach(n => { n.x = Math.random()*w; n.y = Math.random()*h; });
+  });
+  init();
+  animate();
+})();
+
+// ————————————————————————————————————————————————
+// ABOUT CANVAS: Neural network visualization
+// ————————————————————————————————————————————————
+(function(){
+  const canvas = document.getElementById('aboutCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h;
+
+  function resize(){
+    const rect = canvas.parentElement.getBoundingClientRect();
+    w = canvas.width = rect.width * window.devicePixelRatio;
+    h = canvas.height = rect.height * window.devicePixelRatio;
+    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    w = rect.width;
+    h = rect.height;
+  }
+
+  const layers = [4, 6, 8, 6, 4, 2];
+  let neurons = [];
+  let signals = [];
+
+  function initNeurons(){
+    neurons = [];
+    const layerSpacing = w / (layers.length + 1);
+    layers.forEach((count, li) => {
+      const x = layerSpacing * (li + 1);
+      const neuronSpacing = h / (count + 1);
+      for(let ni = 0; ni < count; ni++){
+        neurons.push({
+          x, y: neuronSpacing * (ni + 1),
+          layer: li,
+          radius: 3 + Math.random()*2,
+          alpha: 0.3 + Math.random()*0.3,
+          pulse: Math.random() * Math.PI * 2
+        });
+      }
+    });
+  }
+
+  function createSignal(){
+    const fromLayer = Math.floor(Math.random() * (layers.length - 1));
+    const fromNeurons = neurons.filter(n => n.layer === fromLayer);
+    const toNeurons = neurons.filter(n => n.layer === fromLayer + 1);
+    if(!fromNeurons.length || !toNeurons.length) return null;
+    const from = fromNeurons[Math.floor(Math.random()*fromNeurons.length)];
+    const to = toNeurons[Math.floor(Math.random()*toNeurons.length)];
+    return {
+      fromX: from.x, fromY: from.y,
+      toX: to.x, toY: to.y,
+      progress: 0,
+      speed: 0.008 + Math.random()*0.012,
+      color: Math.random() > 0.5 ? [232,201,139] : [122,162,255]
+    };
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = 'rgba(255,255,255,0.02)';
+    ctx.lineWidth = 0.5;
+    for(let x = 0; x < w; x += 30){
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+    }
+    for(let y = 0; y < h; y += 30){
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+    }
+    for(let li = 0; li < layers.length - 1; li++){
+      const from = neurons.filter(n => n.layer === li);
+      const to = neurons.filter(n => n.layer === li + 1);
+      from.forEach(f => {
+        to.forEach(t => {
+          ctx.strokeStyle = 'rgba(122,162,255,0.04)';
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.moveTo(f.x, f.y);
+          ctx.lineTo(t.x, t.y);
+          ctx.stroke();
+        });
+      });
+    }
+    if(Math.random() < 0.06){
+      const s = createSignal();
+      if(s) signals.push(s);
+    }
+    signals = signals.filter(s => s.progress <= 1);
+    signals.forEach(s => {
+      s.progress += s.speed;
+      const x = s.fromX + (s.toX - s.fromX) * s.progress;
+      const y = s.fromY + (s.toY - s.fromY) * s.progress;
+      const a = Math.sin(s.progress * Math.PI) * 0.8;
+      ctx.beginPath();
+      ctx.arc(x, y, 2.5, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${s.color.join(',')},${a})`;
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(x, y, 6, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${s.color.join(',')},${a*0.3})`;
+      ctx.fill();
+    });
+    const time = Date.now() * 0.001;
+    neurons.forEach(n => {
+      const pulseAlpha = n.alpha + Math.sin(time + n.pulse) * 0.15;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(232,201,139,${pulseAlpha})`;
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius + 4, 0, Math.PI*2);
+      ctx.strokeStyle = `rgba(232,201,139,${pulseAlpha * 0.2})`;
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+    });
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  initNeurons();
+  draw();
+  window.addEventListener('resize', () => { resize(); initNeurons(); });
+})();
+
+// ————————————————————————————————————————————————
+// INTERACTIONS
+// ————————————————————————————————————————————————
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>40)});
+
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const heroCanvas=document.getElementById('heroCanvas');
+const heroContent=document.querySelector('.hero-content');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  if(y<window.innerHeight){
+    if(heroCanvas)heroCanvas.style.transform=`translateY(${y*0.25}px)`;
+    if(heroContent)heroContent.style.transform=`translateY(${y*0.18}px)`;
+    if(heroContent)heroContent.style.opacity=Math.max(0,1-y/600);
+  }
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href');
+    if(id.length>1){
+      const el=document.querySelector(id);
+      if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'})}
+    }
+  });
+});
+
+const clock=document.getElementById('clock');
+function tick(){
+  const d=new Date();
+  const p=n=>String(n).padStart(2,'0');
+  clock.textContent=`${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
+}
+setInterval(tick,1000);tick();
+
+document.querySelectorAll('.work-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-0.5;
+    const y=(e.clientY-r.top)/r.height-0.5;
+    card.style.transform=`translateY(-4px) perspective(900px) rotateX(${y*-3}deg) rotateY(${x*3}deg)`;
+  });
+  card.addEventListener('mouseleave',()=>{card.style.transform=''});
+});
+</script>
+</body>
+</html>
