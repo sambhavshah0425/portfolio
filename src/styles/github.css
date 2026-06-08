@@ -1,6 +1,8 @@
 .github-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; }
-@media (max-width: 780px) { .github-grid { grid-template-columns: 1fr; } }
+@media (max-width: 979px) { .github-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+@media (max-width: 600px)  { .github-grid { grid-template-columns: 1fr; } }
 .gh-card { background: var(--panel); border: 1px solid var(--panel-border); border-radius: var(--radius); padding: 32px; transition: all .4s var(--ease); }
+@media (max-width: 767px) { .gh-card { padding: 22px; } }
 .gh-card:hover { border-color: rgba(255,255,255,0.18); transform: translateY(-3px); }
 .gh-num { font-size: clamp(2.4rem, 4vw, 3.2rem); font-weight: 500; letter-spacing: -0.03em; background: var(--grad-1); -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1; }
 .gh-lbl { font-family: 'JetBrains Mono', monospace; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--text-mute); margin-top: 10px; }

@@ -1,6 +1,6 @@
 .cert-grid{
   display:grid;
-  grid-template-columns:repeat(2, minmax(500px, 620px));
+  grid-template-columns:repeat(2, minmax(0, 620px));
   justify-content:center;
   gap:24px;
   margin-top:50px;
@@ -46,7 +46,7 @@
   align-items:center;
   justify-content:center;
 
-  width:fit-content;      /* important */
+  width:fit-content;
   min-width:180px;
 
   padding:12px 20px;
@@ -65,25 +65,41 @@
   background:rgba(255,255,255,.14);
 }
 
-.cert-btn:hover{
-  background:rgba(255,255,255,.14);
-}
-
 .cert-center{
   grid-column:1 / -1;
   justify-self:center;
-  width:620px;
+  width:min(620px, 100%);
   min-height:180px;
 }
 
-@media (max-width: 900px){
+/* Tablet */
+@media (max-width: 979px){
   .cert-grid{
-    grid-template-columns:1fr;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px){
+  .cert-grid{
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 32px;
   }
 
   .cert-center{
-    grid-column:auto;
-    width:100%;
-    min-height:180px;
+    grid-column: auto;
+    width: 100%;
+    min-height: 160px;
+  }
+
+  .cert-card {
+    padding: 20px 24px;
+    min-height: auto;
+  }
+
+  .cert-btn {
+    min-width: 0;
+    width: 100%;
   }
 }

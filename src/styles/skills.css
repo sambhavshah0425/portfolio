@@ -1,8 +1,9 @@
 /* Skills cards */
 .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-@media (max-width: 980px) { .skills-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 520px) { .skills-grid { grid-template-columns: 1fr; } }
+@media (max-width: 979px) { .skills-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px)  { .skills-grid { grid-template-columns: 1fr; gap: 12px; } }
 .skill-cat { background: var(--panel); border: 1px solid var(--panel-border); border-radius: var(--radius); padding: 36px 32px; transition: border-color .4s var(--ease); }
+@media (max-width: 767px) { .skill-cat { padding: 24px 20px; } }
 .skill-cat:hover { border-color: rgba(255,255,255,0.18); }
 .skill-cat-label { font-family: 'JetBrains Mono', monospace; font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
 .skill-cat h4 { font-size: 1.15rem; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 20px; }
@@ -12,8 +13,10 @@
 
 /* Capabilities bento grid */
 .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--panel-border); border: 1px solid var(--panel-border); border-radius: var(--radius); overflow: hidden; }
-@media (max-width: 780px) { .cap-grid { grid-template-columns: 1fr; } }
+@media (max-width: 979px) { .cap-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px)  { .cap-grid { grid-template-columns: 1fr; } }
 .cap { padding: 44px 36px; background: var(--bg); transition: background .4s var(--ease); min-height: 280px; display: flex; flex-direction: column; justify-content: space-between; }
+@media (max-width: 767px) { .cap { padding: 28px 22px; min-height: 220px; } }
 .cap:hover { background: var(--bg-soft); }
 .cap .num { font-family: 'JetBrains Mono', monospace; font-size: .72rem; letter-spacing: .18em; color: var(--text-mute); }
 .cap h3 { font-size: 1.5rem; font-weight: 500; letter-spacing: -0.02em; margin: 24px 0 16px; }

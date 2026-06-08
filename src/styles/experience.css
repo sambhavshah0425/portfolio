@@ -8,3 +8,8 @@
 .tl-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 .tl-list li { color: var(--text-dim); font-size: .95rem; font-weight: 300; padding-left: 20px; position: relative; }
 .tl-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent-2); font-size: .85rem; }
+@media (max-width: 767px) {
+  .tl-item { padding: 32px 0 32px 36px; }
+  .tl-title { font-size: 1.15rem; }
+  .tl-list li { font-size: .88rem; }
+}

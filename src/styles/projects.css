@@ -8,10 +8,19 @@
 .work-card.small { grid-column: span 5; aspect-ratio: 16/10; }
 .work-card.med { grid-column: span 4; }
 .work-card.wide { grid-column: span 8; aspect-ratio: 16/9; }
-@media (max-width: 980px) {
+@media (max-width: 979px) {
   .work-card, .work-card.large, .work-card.small, .work-card.med, .work-card.wide {
     grid-column: span 12; aspect-ratio: 16/10;
   }
+}
+@media (max-width: 767px) {
+  .work-grid { gap: 16px; }
+  .work-card, .work-card.large, .work-card.small, .work-card.med, .work-card.wide {
+    grid-column: span 12; aspect-ratio: 4/3;
+  }
+  .work-overlay { padding: 18px; }
+  .work-info h3 { font-size: 1.15rem; }
+  .work-info .icon { width: 34px; height: 34px; }
 }
 .work-visual { position: absolute; inset: 0; transition: transform .8s var(--ease); }
 .work-visual svg { width: 100%; height: 100%; }
@@ -210,25 +219,30 @@
   min-height:420px;
 }
 
-@media (max-width: 980px){
-
+@media (max-width: 979px){
   .timeline-item{
     flex-direction:column;
     gap:24px;
   }
-
   .timeline-side{
     width:100%;
   }
-
   .projects-timeline::before{
     display:none;
   }
-
   .timeline-item::before,
   .timeline-item::after{
     display:none;
   }
+}
+@media (max-width: 767px){
+  .projects-timeline { margin-top: 56px; gap: 48px; }
+  .timeline-summary { padding: 20px; }
+  .timeline-summary h3 { font-size: 1.5rem; margin-bottom: 14px; }
+  .timeline-content .work-card { height: 240px; }
+  .timeline-card .work-card { min-height: 240px; }
+  .project-actions { flex-direction: column; }
+  .project-btn { width: 100%; justify-content: center; }
 }
 .tech-pill{
   padding:6px 12px;
